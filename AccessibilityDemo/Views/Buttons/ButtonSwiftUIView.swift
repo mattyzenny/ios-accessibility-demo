@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ButtonSwiftUIView: View {
+    @State private var number = Int()
+    
     var body: some View {
         VStack {
             Text("Swift UI")
@@ -19,7 +21,8 @@ struct ButtonSwiftUIView: View {
             
             Text("Swift UI uses native accessibility that is built into the framework")
                 .padding()
-            
+        }
+        VStack {
             ExampleCard(
                 icon: .voiceOver,
                 label: "Buttons with Accessible Text",
@@ -30,47 +33,63 @@ struct ButtonSwiftUIView: View {
                         .accessibilityLabel("Learn more about labels")
                 },
                 sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output"){
-                        VoiceOverRow(icon: icon,
-                                     subText: "'Learn more about labels, Button'")
+                    CardSections(sectionHeading: "VoiceOver Output") {
+                        VoiceOverRow(
+                            icon: icon,
+                            subText: "'Learn more about labels, Button'"
+                        )
                     }
+                    
                     Divider()
+                    
                     CardSections(sectionHeading: "Code") {
                         Text("""
-                    Button("Learn More"){}
-                        .accessibilityLabel(Learn more about labels
-                    """)
+                        Button("Learn More") {}
+                            .accessibilityLabel("Learn more about labels")
+                        """)
                         .codeBlockModifier()
                     }
                 }
             )
+        }
+        VStack {
             ExampleCard(
                 icon: .voiceOver,
                 label: "Buttons with an Accessible Hint",
                 subLabel: "Use `accessibilityHint` to provide supplimental hints about the buttons purpose",
                 examples: {
-                    Button("Learn More"){}
+                    Button("Learn More"){
+                        number = Int.random(in: 1...100)
+                        AccessibilityNotification.Announcement("\(number)").post()
+                        
+                    }
                         .buttonModifier()
-                        .accessibilityHint("this button has no on-tap action")
+                        .accessibilityHint("this button will announce a random number on-tap, \(number)")
                 },
                 sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output"){
+                    CardSections(sectionHeading: "VoiceOver Output") {
                         VoiceOverRow(
                             icon: icon,
-                            subText: "'Learn more, Button, this button has no on-tap action'")
+                            subText: "'Learn more, Button, this button will announce a random number on-tap, \(number)'"
+                        )
                     }
+                    
                     Divider()
+                    
                     CardSections(sectionHeading: "Code") {
                         Text("""
-                    Button("Learn More"){}
-                        .accessibilityHint(this button has no on-tap action
-                    """).codeBlockModifier()
+                        Button("Learn More") {}
+                            .accessibilityHint("this button will announce a random number on-tap, \(number)")
+                        """)
+                        .codeBlockModifier()
                     }
                 }
             )
+        }
+        VStack{
             ExampleCard(
                 icon: .voiceOver,
-                label: "Image Only Buttons ",
+                label: "Image Only Buttons",
                 subLabel: "Requires `accessibilityLabel`",
                 examples: {
                     Button {}
@@ -83,25 +102,145 @@ struct ButtonSwiftUIView: View {
                     .accessibilityLabel("download")
                 },
                 sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output"){
+                    CardSections(sectionHeading: "VoiceOver Output") {
                         VoiceOverRow(
                             icon: icon,
-                            subText: "'Download, Button'")
+                            subText: "'Download, Button'"
+                        )
                     }
+                    
                     Divider()
+                    
                     CardSections(sectionHeading: "Code") {
                         Text("""
-                    Button(){}
-                    label {
-                        .accessibilityLabel(Download)
+                        Button {
+                        } label: {
+                            Image.download
+                        }
+                        .accessibilityLabel("Download")
+                        """)
+                        .codeBlockModifier()
                     }
-                    """).codeBlockModifier()
+                }
+            )
+        }
+        VStack{
+            ExampleCard(
+                icon: .voiceOver,
+                label: "Disabled Buttons",
+                subLabel: "Add `disabled` to change the button state",
+                examples: {
+                    Button("Learn More") {}
+                        .disabled(true)
+                        .buttonModifier()
+                },
+                sections: { icon in
+                    CardSections(sectionHeading: "VoiceOver Output") {
+                        VoiceOverRow(
+                            icon: icon,
+                            subText: "'Learn More, dimmed, Button'"
+                        )
+                    }
+                    
+                    Divider()
+                    
+                    CardSections(sectionHeading: "Code") {
+                        Text("""
+                        VStack {
+                            Text("Learn More")
+                        }
+                        .accessibilityAddTraits(.isButton)
+                        .buttonModifier()
+                        """)
+                        .codeBlockModifier()
+                    }
+                }
+            )
+        }
+        VStack{
+            ExampleCard(
+                icon: .voiceOver,
+                label: "Grouped Buttons",
+                subLabel: "Use `GroupBox` to group buttons and assign `accessibilityElement` + `accessibilityLabel` to the group container",
+                examples: {
+                    GroupBox {
+                        HStack{
+                            Button("Florida") {}
+                            Button("California") {}
+                            Button("Paris") {}
+                        }
+                        .buttonModifier()
+                    }
+                    .accessibilityElement(children: .contain)
+                    .accessibilityLabel("Choose a Park")
+                },
+                sections: { icon in
+                    CardSections(sectionHeading: "VoiceOver Output") {
+                        VoiceOverRow(
+                            icon: icon,
+                            subText: "Choose a Park"
+                        )
+                    }
+                    
+                    Divider()
+                    
+                    CardSections(sectionHeading: "Code") {
+                        Text("""
+                        GroupBox {
+                            HStack {
+                                Button("Florida") {}
+                                Button("California") {}
+                                Button("Paris") {}
+                            }
+                            .buttonModifier()
+                        }
+                        .accessibilityElement(children: .contain)
+                        .accessibilityLabel("Choose a Park")
+                        """)
+                        .codeBlockModifier()
+                    }
+                }
+            )
+        }
+        VStack{
+            ExampleCard(
+                icon: .voiceOver,
+                label: "Custom Buttons",
+                subLabel: "Requires `accessibilityAddTraits`. All styling and button functionality must be handled independently.",
+                examples: {
+                    VStack {
+                        Text("Learn More")
+                        
+                    }
+                    .accessibilityAddTraits(.isButton)
+            
+                },
+                sections: { icon in
+                    CardSections(sectionHeading: "VoiceOver Output") {
+                        VoiceOverRow(
+                            icon: icon,
+                            subText: "'Learn More, Button'"
+                        )
+                    }
+                    
+                    Divider()
+                    
+                    CardSections(sectionHeading: "Code") {
+                        Text("""
+                        VStack {
+                            Text("Learn More") 
+                            }
+                        .accessibilityAddTraits(.isButton)
+                        """)
+                        .codeBlockModifier()
                     }
                 }
             )
         }
     }
 }
+
+
 
 
 

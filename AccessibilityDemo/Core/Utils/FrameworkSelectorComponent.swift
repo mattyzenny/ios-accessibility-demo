@@ -22,6 +22,7 @@ struct FrameworkSelectorComponent: View {
                 Text("UIKit").tag(FrameworkOption.uiKit)
                 Text("Both").tag(FrameworkOption.both)
             }
+            .accessibilityLabel("Select a Framework")
             .pickerStyle(.segmented)
         }
         .padding()

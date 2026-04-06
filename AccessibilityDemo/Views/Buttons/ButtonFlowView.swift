@@ -21,22 +21,25 @@ struct ButtonFlowView: View {
             FrameworkSelectorComponent()
 
             Form {
-                switch setting.framework {
-                case .swiftUI:
-                    swiftUIGuidanceSection
-                    ButtonSwiftUIView()
-
-                case .uiKit:
-                    uiKitGuidanceSection
-                    ButtonUIKitView()
-
-                case .both:
-                    genericGuidanceSection
-                    ButtonSwiftUIView()
-                    ButtonUIKitView()
-                }
+                    switch setting.framework {
+                    case .swiftUI:
+                        swiftUIGuidanceSection
+                        ButtonSwiftUIView()
+                        
+                        
+                    case .uiKit:
+                        uiKitGuidanceSection
+                        ButtonUIKitView()
+                        
+                    case .both:
+                        genericGuidanceSection
+                        ButtonSwiftUIView()
+                        ButtonUIKitView()
+                    }
             }
+
         }
+
     }
 
     private var genericGuidanceSection: some View {
