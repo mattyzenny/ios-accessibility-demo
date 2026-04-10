@@ -13,29 +13,77 @@ struct HeadingFlowView: View {
         @Bindable var setting = settings
 
         VStack(spacing: 20) {
-            Text("Headings")
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityHeading(.h1)
 
             FrameworkSelectorComponent()
 
             Form {
-                Text("Native buttons should expose a clear name, role, and state.")
-                Text(.init("**Name:** Use the visible button title when it is descriptive. If the title is not clear enough, provide a better spoken label with `setTitle` or `accessibilityLabel`."))
-                Text(.init("**Role:** Native `UIButton` already announces itself as a button, so in most cases the role does not need extra work."))
-                Text(.init("**State:** Make the current state obvious. For example, a disabled button can be represented with `button.isEnabled = false`."))
+                    switch setting.framework {
+                    case .swiftUI:
+                        swiftUIGuidanceSection
+                        HeadingSwiftUI()
+                        
+                        
+                    case .uiKit:
+                        uiKitGuidanceSection
+                        HeadingUIKit()
+                        
+                    case .both:
+                        genericGuidanceSection
+                        HeadingSwiftUI()
+                        HeadingUIKit()
+                    }
             }
-
-            if setting.framework == .swiftUI || setting.framework == .both {
-                HeadingSwiftUIView()
-            }
-
-            if setting.framework == .uiKit || setting.framework == .both {
-                HeadingUIKitView()
+        }
+        .toolbar {
+            ToolbarItem(placement: .title) {
+                Text("Accessible Headings")
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityHeading(.h1)
             }
         }
     }
 }
+
+private var genericGuidanceSection: some View {
+    Section {
+        Text(.init("""
+        **Clarity:** Write headings that clearly describe the content it precedes.
+        """))
+
+        Text(.init("""
+        **Structure:** In mobile apps, headings often group related content within a screen or section, not just the top of a page. Do not use headings for visual styling only.
+        """))
+
+        Text(.init("""
+        **Hierarchy:** Use headings consistently across the screen. Avoid overusing headings.
+        """))
+    }
+}
+
+private var uiKitGuidanceSection: some View {
+    Section {
+        Text(.init("""
+        **UILabel:** UIKit does not typically have heading levels. For this reason, all headings will have the same heirarchy.
+        """))
+
+        Text(.init("""
+        **Traits:** Add `.header` to `accessibilityTraits` so VoiceOver announces the element as a heading instead of plain static text.
+        """))
+    }
+}
+
+private var swiftUIGuidanceSection: some View {
+    Section {
+        Text(.init("""
+        **Text Views:** Use `Text` for headings whenever possible, then mark it with `.accessibilityAddTraits(.isHeader)` so assistive technologies treat it as a heading.
+        """))
+
+        Text(.init("""
+        **Levels:** Add `.accessibilityHeading(.h1)` after `.accessibilityAddTraits() when the screen has a real heading hierarchy and the level matters.
+        """))
+    }
+}
+
 
 #Preview {
     NavigationStack {

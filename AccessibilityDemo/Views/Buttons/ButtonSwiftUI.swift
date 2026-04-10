@@ -1,5 +1,5 @@
 //
-//  ButtonSwiftUIView.swift
+//  ButtonSwiftUI.swift
 //  AccessibilityDemo
 //
 //  Created by Matty Zenny on 3/23/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ButtonSwiftUIView: View {
+struct ButtonSwiftUI: View {
     @State private var number = Int()
     
     var body: some View {
@@ -247,6 +247,6 @@ struct ButtonSwiftUIView: View {
 
 #Preview {
     NavigationStack {
-        ButtonSwiftUIView()
+        ButtonSwiftUI()
     }.environment(GlobalFrameworkSettings())
 }

@@ -1,5 +1,5 @@
 //
-//  ButtonUIKitView.swift
+//  ButtonUIKit.swift
 //  AccessibilityDemo
 //
 //  Created by Matty Zenny on 3/23/26.
@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct ButtonUIKitView: View {
+struct ButtonUIKit: View {
     
     var body: some View {
         ButtonIntro()
@@ -408,5 +408,5 @@ struct ButtonUIKitView: View {
     }
 }
 #Preview {
-    ButtonUIKitView()
+    ButtonUIKit()
 }
