@@ -1,5 +1,5 @@
 //
-//  LinkFlowView.swift
+//  SliderFlowView.swift
 //  AccessibilityDemo
 //
 //  Created by Matty Zenny on 4/9/26.
@@ -7,59 +7,54 @@
 
 import SwiftUI
 
-struct LinkFlowView: View {
+struct SliderFlowView: View {
     @Environment(GlobalFrameworkSettings.self) private var settings
-    
+
     var body: some View {
         @Bindable var setting = settings
-        
+
         VStack(spacing: 20) {
             FrameworkSelectorComponent()
-            
+
             Form {
                 switch setting.framework {
                 case .swiftUI:
                     swiftUIGuidanceSection
-                    LinkSwiftUI()
-                    
-                    
+                    SliderSwiftUI()
+
                 case .uiKit:
                     uiKitGuidanceSection
-                    LinkUIKit()
-                    
+                    SliderUIKit()
+
                 case .both:
                     genericGuidanceSection
-                    LinkSwiftUI()
-                    LinkUIKit()
+                    SliderSwiftUI()
+                    SliderUIKit()
                 }
             }
-            
+
         }
         .toolbar {
             ToolbarItem(placement: .title) {
-                Text("Accessible Links")
+                Text("Accessible Sliders")
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityHeading(.h1)
             }
         }
     }
-    
-    
+
     private var genericGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Use a descriptive and visible label for links. An alternative label must be provided for icons only links. 
+            **Name:** Use a concise spoken label that matches the action.
             """))
-            
+
             Text(.init("""
-            **Role:** Use a semantically appropraite Link, or for custom links provide the accessible trait of link.
+            **Role:** Expose the control as a button when it behaves like one.
             """))
-            
+
             Text(.init("""
-            **State:** Expose meaningful states like disabled.
-            """))
-            Text(.init("""
-            **Behavior:** In native, links typically open a destination outside the current app context, such as a website, another app, or a system experience like the share sheet.
+            **State:** Expose meaningful states like disabled, selected, or expanded.
             """))
         } header: {
             Text("Generic Guidelines")
@@ -68,19 +63,19 @@ struct LinkFlowView: View {
                 .frame(maxWidth: .infinity)
         }
     }
-        
+
     private var swiftUIGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Native `Link` usually uses its label. Add `.accessibilityLabel(...)` only when needed.
+            **Name:** Native `Button()` usually uses its label. Add `.accessibilityLabel(...)` only when needed.
             """))
-            
+
             Text(.init("""
-            **Role:** Native `Link` has a role of button and link. Use `.accessibilityRemoveTraits(.isButton)` for standalone links. For a custom link view, add `.accessibilityAddTraits(.isLink)`.
+            **Role:** Native `Button()` already has button semantics. For a custom tappable view, prefer a real `Button`; otherwise add `.accessibilityAddTraits(.isButton)`.
             """))
-            
+
             Text(.init("""
-            **State:** Use real state like `.disabled(true)`.
+            **State:** Use real state like `.disabled(true)`. If a fully custom control still does not expose state clearly, add extra accessibility state information as needed.
             """))
         } header: {
             Text("SwiftUI Guidance")
@@ -89,19 +84,19 @@ struct LinkFlowView: View {
                 .frame(maxWidth: .infinity)
         }
     }
-    
+
     private var uiKitGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Native links typically use their visible text. Add `accessibilityLabel` only when needed.
+            **Name:** `UIButton` usually uses its title. Add `accessibilityLabel` only when needed.
             """))
-            
+
             Text(.init("""
-            **Role:** Native links already expose link semantics. Custom interactive views that behave like links need explicit accessibility configuration.
+            **Role:** `UIButton` already has button semantics. Custom interactive views need explicit accessibility configuration.
             """))
-            
+
             Text(.init("""
-            **State:** Use real control state so assistive technologies can announce it correctly.
+            **State:** Use real control state such as `isEnabled = false` so assistive technologies can announce it correctly.
             """))
         } header: {
             Text("UIKit Guidance")
@@ -114,7 +109,7 @@ struct LinkFlowView: View {
 
 #Preview {
     NavigationStack {
-        LinkFlowView()
+        SliderFlowView()
     }
     .environment(GlobalFrameworkSettings())
 }

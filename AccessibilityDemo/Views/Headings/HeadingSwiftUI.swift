@@ -9,6 +9,19 @@ import SwiftUI
 struct HeadingSwiftUI: View {
     var body: some View {
         VStack {
+            Text("Swift UI")
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityHeading(.h2)
+                .foregroundColor(.secondary)
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+
+            Text(
+                "Swift UI uses native accessibility that is built into the framework"
+            )
+            .padding()
+        }
+        VStack {
             ExampleCard(
                 icon: .voiceOver,
                 label: "Generic Header",

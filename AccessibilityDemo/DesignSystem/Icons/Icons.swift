@@ -18,4 +18,10 @@ extension Image {
     static let voiceOver = Image(systemName: "waveform.badge.checkmark")
     
     static let download = Image(systemName: "square.and.arrow.down")
+    
+    static let link = Image(systemName: "link")
+    
+    static let slider = Image(systemName: "slider.horizontal.3")
+    
+    static let switcher = Image(systemName: "switch.2")
 }

@@ -30,7 +30,6 @@ struct HomeView: View {
                     )
                 }
                 .groupBoxStyle(CardStyle())
-                
                 .listRowSeparator(.hidden)
                 
                 GroupBox {
@@ -38,7 +37,40 @@ struct HomeView: View {
                         icon: .heading,
                         label: "Headings",
                         destination: HeadingFlowView(),
-                        accessibilityLabel: "Headings examples")
+                         accessibilityLabel: "Headings examples")
+                    
+                }
+                .groupBoxStyle(CardStyle())
+                .listRowSeparator(.hidden)
+                
+                GroupBox {
+                    ComponentCard(
+                        icon: .link,
+                        label: "Links",
+                        destination: LinkFlowView(),
+                        accessibilityLabel: "Link examples")
+                    
+                }
+                .groupBoxStyle(CardStyle())
+                .listRowSeparator(.hidden)
+                
+                GroupBox {
+                    ComponentCard(
+                        icon: .slider,
+                        label: "Sliders & Steppers",
+                        destination: SliderFlowView(),
+                        accessibilityLabel: "Slider & Switch examples")
+                    
+                }
+                .groupBoxStyle(CardStyle())
+                .listRowSeparator(.hidden)
+                
+                GroupBox {
+                    ComponentCard(
+                        icon: .switcher,
+                        label: "Switches",
+                        destination: SwitchFlowView(),
+                        accessibilityLabel: "Switch examples")
                     
                 }
                 .groupBoxStyle(CardStyle())

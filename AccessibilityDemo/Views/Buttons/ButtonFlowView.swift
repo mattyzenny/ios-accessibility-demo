@@ -58,6 +58,10 @@ struct ButtonFlowView: View {
             Text(.init("""
             **State:** Expose meaningful states like disabled, selected, or expanded.
             """))
+            
+            Text(.init("""
+            **Behavior:** In native, buttons typically trigger an in-app action, such as submitting, toggling, confirming, or moving to another screen.
+            """))
         } header: {
             Text("Generic Guidelines")
                 .accessibilityAddTraits(.isHeader)
