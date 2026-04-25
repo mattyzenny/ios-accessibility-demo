@@ -14,7 +14,7 @@ struct SliderUIKit: View {
         var body: some View {
             VStack {
                 Text("UIKit")
-                    .accessibilityAddTraits(.isLink)
+                    .accessibilityAddTraits(.isHeader)
                     .accessibilityHeading(.h2)
                     .foregroundColor(.secondary)
                     .font(.headline)
