@@ -47,6 +47,9 @@ private struct CodeBlockModifier: ViewModifier {
         content
             .font(.system(size: 14, design: .monospaced))
             .frame(maxWidth: .infinity, alignment: .leading)
+            .fixedSize(horizontal: false, vertical: true)
+            .multilineTextAlignment(.leading)
+            .lineLimit(nil)
             .padding()
             .background(Color.black)
             .foregroundColor(.green)

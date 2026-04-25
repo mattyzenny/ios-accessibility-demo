@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SliderSwiftUI: View {
+
+    @State private var value = 0
+    @State private var sliderValue: Double = 0
+
     var body: some View {
         VStack {
             Text("Swift UI")
@@ -17,192 +21,280 @@ struct SliderSwiftUI: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity)
 
-            Text("Swift UI uses native accessibility that is built into the framework")
-                .padding()
-        }
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Buttons with Accessible Text",
-                subLabel: "Add `accessibilityLabel` for additional button label information",
-                examples: {
-                    Button("Learn More") {}
-                        .buttonModifier()
-                        .accessibilityLabel("Learn more about labels")
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "'Learn more about labels, Button'"
-                        )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        Button("Learn More") {}
-                            .accessibilityLabel("Learn more about labels")
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
+            Text(
+                """
+                A Slider is a single element control with a ranged value.
+                The slider has a hidden label, so add an explicit `Label` that matches the hidden label.
+                A stepper is similar, but it uses 2 buttons that control increment and decrement actions.
+                """
             )
-        }
-
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Image Only Buttons",
-                subLabel: "Requires `accessibilityLabel`",
-                examples: {
-                    Button {
-                    } label: {
-                        Image.download
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 25)
-                    }
-                    .accessibilityLabel("download")
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "'Download, Button'"
-                        )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        Button {
-                        } label: {
-                            Image.download
-                        }
-                        .accessibilityLabel("Download")
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
-            )
+            .padding()
         }
         VStack {
             ExampleCard(
                 icon: .voiceOver,
-                label: "Disabled Buttons",
-                subLabel: "Add `disabled` to change the button state",
-                examples: {
-                    Button("Learn More") {}
-                        .disabled(true)
-                        .buttonModifier()
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "'Learn More, dimmed, Button'"
-                        )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        VStack {
-                            Text("Learn More")
-                        }
-                        .accessibilityAddTraits(.isButton)
-                        .buttonModifier()
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
-            )
-        }
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Grouped Buttons",
-                subLabel: "Use `GroupBox` to group buttons and assign `accessibilityElement` + `accessibilityLabel` to the group container",
-                examples: {
-                    GroupBox {
-                        HStack {
-                            Button("Florida") {}
-                            Button("California") {}
-                            Button("Paris") {}
-                        }
-                        .buttonModifier()
-                    }
-                    .accessibilityElement(children: .contain)
-                    .accessibilityLabel("Choose a Park")
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "Choose a Park"
-                        )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        GroupBox {
-                            HStack {
-                                Button("Florida") {}
-                                Button("California") {}
-                                Button("Paris") {}
-                            }
-                            .buttonModifier()
-                        }
-                        .accessibilityElement(children: .contain)
-                        .accessibilityLabel("Choose a Park")
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
-            )
-        }
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Custom Buttons",
-                subLabel: "Requires `accessibilityAddTraits`. All styling and button functionality must be handled independently.",
+                label: "Steppers and Sliders with visible labels",
+                subLabel:
+                    "Steppers combine the visible label with its increment/decrement buttons. Sliders require an explicit label.",
                 examples: {
                     VStack {
-                        Text("Learn More")
+                        Stepper(
+                            "Ticket Purchase: \(value)",
+                            value: $value,
+                            in: 0...10
+                        )
+                        .padding()
 
+                        Label(
+                            "Day Passes: \(Int(sliderValue))",
+                            systemImage: "calendar.badge"
+                        )
+                        .accessibilityHidden(true)
+                        Slider(
+                            value: $sliderValue,
+                            in: 0...100,
+                            step: 1,
+                            label: { Text("Day Passes: \(Int(sliderValue))") }
+                        )
                     }
-                    .accessibilityAddTraits(.isButton)
-
                 },
                 sections: { icon in
                     CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "'Learn More, Button'"
-                        )
+                        HStack {
+                            VoiceOverRow(
+                                icon: icon,
+                                subText:
+                                    "'Ticket Purchase, 0, Decrement, 0, Button'"
+                            )
+                            VoiceOverRow(
+                                icon: icon,
+                                subText:
+                                    "'Day Passes, 0, 0 %, adjustable, Swipe up or down with one finger to adjust value.'"
+                            )
+                        }
                     }
 
                     Divider()
 
                     CardSections(sectionHeading: "Code") {
-                        Text("""
-                        VStack {
-                            Text("Learn More")
+                        Text(
+                            """
+                            <Stepper>
+
+                            Stepper(
+                                "Ticket Purchase: \(value)",
+                                value: $value,
+                                in: 0...10
+                            )
+
+                            <Slider>
+
+                            Label("Day Passes: \(Int(sliderValue))", systemImage: "calendar.badge")
+                                .accessibilityHidden(true)
+
+                            Slider(
+                                value: $sliderValue,
+                                in: 0...100,
+                                step: 1,
+                                label: { Text("Day Passes: \(Int(sliderValue))") },
+                            )
+                            """
+                        )
+                        .codeBlockModifier()
+                    }
+                }
+            )
+        }
+        VStack {
+            ExampleCard(
+                icon: .voiceOver,
+                label: "Sliders with accessible label",
+                subLabel:
+                    "Use `accessibilityLabel` to overwrite default text labels for better accessibility. This does not work on Stepper, since Stepper is a composite widget combining both buttons and labels.",
+                examples: {
+                    VStack {
+                        Stepper(
+                            "Ticket Purchase: \(value)",
+                            value: $value,
+                            in: 0...10
+                        )
+                        .padding()
+                        
+                        Label("Day Passes \(Int(sliderValue))", systemImage: "calendar.badge")
+                            .accessibilityHidden(true)
+                        Slider(
+                            value: $sliderValue,
+                            in: 0...100,
+                            step: 1,
+                            label: { Text("Purchase Adult Day Passes \(Int(sliderValue))") }
+                        )
+                    }
+                },
+                sections: { icon in
+                    CardSections(sectionHeading: "VoiceOver Output") {
+                        HStack {
+                            VoiceOverRow(
+                                icon: icon,
+                                subText:
+                                    "'Ticket Purchase, 0, Decrement, 0, Button'"
+                            )
+                            VoiceOverRow(
+                                icon: icon,
+                                subText:
+                                    "'Purchase Adult Day Passes, 0, 0 %, adjustable, Swipe up or down with one finger to adjust value.'"
+                            )
+                        }
+                    }
+
+                    Divider()
+
+                    CardSections(sectionHeading: "Code") {
+                        Text(
+                            """
+                            <Stepper>
+
+                            Stepper(
+                                "Ticket Purchase: \(value)",
+                                value: $value,
+                                in: 0...10
+                            )
+
+                            *Slider*
+
+                            Label("Day Passes: \(Int(sliderValue))", systemImage: "calendar.badge")
+                                .accessibilityHidden(true)
+
+                            Slider(
+                                value: $sliderValue,
+                                in: 0...100,
+                                step: 1,
+                                label: { Text("Purchase Adult Day Passes \(Int(sliderValue))") },
+                            )
+                            """
+                        )
+                        .codeBlockModifier()
+                    }
+                }
+            )
+        }
+        VStack {
+            ExampleCard(
+                icon: .voiceOver,
+                label: "Steppers and Sliders with accessible values and hints",
+                subLabel:
+                    "Use `accessibilityValue` and `accessibilityHint` to improve the announcement of the value and accessibility of your controls.",
+                examples: {
+                    VStack {
+                        Stepper(
+                            "Ticket Purchase: \(value)",
+                            value: $value,
+                            in: 0...10
+                        )
+                        .accessibilityValue(Text("\(value) Tickets"))
+                        .padding()
+
+                        Label(
+                            "Purchase Day Passes: \(Int(sliderValue))",
+                            systemImage: "calendar.badge"
+                        )
+                        .accessibilityHidden(true)
+                        Slider(
+                            value: $sliderValue,
+                            in: 0...100,
+                            step: 1,
+                            label: { Text("Purchase Day Passes") },
+                            minimumValueLabel: {
+                                Text("0")
+                                    .accessibilityHidden(true)
+                            },
+                            maximumValueLabel: {
+                                Text("100")
+                                    .accessibilityHidden(true)
                             }
-                        .accessibilityAddTraits(.isButton)
-                        """)
+                        )
+                        .accessibilityValue("\(Int(sliderValue)) Days")
+                        .accessibilityHint("minimum 0, maximum 100")
+                    }
+                },
+                sections: { icon in
+                    CardSections(sectionHeading: "VoiceOver Output") {
+                        HStack {
+                            VoiceOverRow(
+                                icon: icon,
+                                subText:
+                                    "'Ticket Purchase, 0, Decrement, 0 Tickets, Button'"
+                            )
+                            VoiceOverRow(
+                                icon: icon,
+                                subText:
+                                    "'Purchase Day Passes, 0 Days, adjustable, minimum 0, maximum 100. Swipe up or down with one finger to adjust value.'"
+                            )
+                        }
+                    }
+
+                    Divider()
+
+                    CardSections(sectionHeading: "Code") {
+                        Text(
+                            """
+                            *Stepper*
+
+                            Stepper(
+                                "Ticket Purchase: \(value)",
+                                value: $value,
+                                in: 0...10
+                            )
+                            .accessibilityValue(Text("\(value) Tickets"))
+
+
+                            *Slider*
+
+                            Label("Purchase Day Passes: \(Int(sliderValue))", systemImage: "calendar.badge")
+                                .accessibilityHidden(true)
+
+                            Slider(
+                                value: $sliderValue,
+                                in: 0...100,
+                                step: 1,
+                                label: { Text("Purchase Day Passes") },
+                                minimumValueLabel: {
+                                    Text("0")
+                                        .accessibilityHidden(true)
+                                },
+                                maximumValueLabel: {
+                                    Text("100")
+                                        .accessibilityHidden(true)
+                                }
+                            )
+                            .accessibilityValue("\(Int(sliderValue)) Days")
+                            .accessibilityHint("minimum 0, maximum 100")
+                            """
+                        )
                         .codeBlockModifier()
                     }
                 }
             )
         }
     }
+}
+
+// MARK: - Function Not needed
+
+extension SliderSwiftUI {
+    var maxValue: Int {
+        100
+    }
+    var minValue: Int {
+        0
+    }
+
+    private func increaseValue() {
+        value += 1
+    }
+    private func decreaseValue() {
+        value -= 1
+    }
+
 }
 
 #Preview {

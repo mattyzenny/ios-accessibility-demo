@@ -9,6 +9,15 @@ import SwiftUI
 
 struct LinkSwiftUI: View {
     var body: some View {
+        LinkIntro()
+        TextLinks()
+        ImageLinks()
+        IconTextLinks()
+    }
+}
+
+private struct LinkIntro: View {
+    var body: some View {
         VStack {
             Text("Swift UI")
                 .accessibilityAddTraits(.isHeader)
@@ -22,6 +31,10 @@ struct LinkSwiftUI: View {
             )
             .padding()
         }
+    }
+}
+private struct TextLinks: View {
+    var body: some View {
         VStack {
             ExampleCard(
                 icon: .voiceOver,
@@ -55,21 +68,25 @@ struct LinkSwiftUI: View {
                             subText: "'View more, Link'"
                         )
                     }
-
+                    
                     Divider()
-
+                    
                     CardSections(sectionHeading: "Code") {
                         Text(
-                            """
-                            Link("View more"),destination: URL(string:"developer.apple.com/documentation/swiftui/accessibilitytraits")!)
-                                .accessibilityRemoveTraits(.isButton)
-                            """
+                        """
+                        Link("View more"),destination: URL(string:"developer.apple.com/documentation/swiftui/accessibilitytraits")!)
+                            .accessibilityRemoveTraits(.isButton)
+                        """
                         )
                         .codeBlockModifier()
                     }
                 }
             )
         }
+    }
+}
+private struct ImageLinks: View {
+    var body: some View {
         VStack {
             ExampleCard(
                 icon: .voiceOver,
@@ -112,6 +129,11 @@ struct LinkSwiftUI: View {
                 }
             )
         }
+
+    }
+}
+private struct IconTextLinks: View {
+    var body: some View {
         VStack {
             ExampleCard(
                 icon: .voiceOver,
@@ -140,20 +162,20 @@ struct LinkSwiftUI: View {
                             subText: "'swift API, Link'"
                         )
                     }
-
+                    
                     Divider()
-
+                    
                     CardSections(sectionHeading: "Code") {
                         Text(
-                            """
-                            Link(
-                            destination: URL(
-                            string:"https://developer.apple.com/documentation/swiftui/link")!) {
-                            Label(
-                            "swift API",
-                            systemImage:"text.page.badge.magnifyingglass")
-                            }
-                            """
+                    """
+                    Link(
+                    destination: URL(
+                    string:"https://developer.apple.com/documentation/swiftui/link")!) {
+                    Label(
+                    "swift API",
+                    systemImage:"text.page.badge.magnifyingglass")
+                    }
+                    """
                         )
                         .codeBlockModifier()
                     }
@@ -162,7 +184,6 @@ struct LinkSwiftUI: View {
         }
     }
 }
-
 #Preview {
     NavigationStack {
         LinkSwiftUI()

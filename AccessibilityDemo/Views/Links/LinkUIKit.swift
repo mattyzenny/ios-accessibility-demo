@@ -32,7 +32,7 @@ struct LinkUIKit: View {
                     CustomLink(
                     title: "View more",
                     icon: "",
-                    url: URL(string: "https://developer.apple.com/documentation/uikit/accessibilitytraits")!
+                    url: URL(string: "https://developer.apple.com/documentation/uikit/accessibility-for-uikit")!
                     )
                 },
                 sections: { icon in
@@ -110,9 +110,9 @@ struct LinkUIKit: View {
                     "Combine text and image in UIButton, then add `accessibilityTraits`",
                 examples: {
                     CustomLink(
-                    title: "swift API",
+                    title: " uiKit API",
                     icon: "text.page.badge.magnifyingglass",
-                    url: URL(string: "https://developer.apple.com/documentation/uikit/link")!
+                    url: URL(string: "https://developer.apple.com/documentation/uikit/uibutton")!
                     )
                 },
                 sections: { icon in
@@ -167,7 +167,7 @@ private struct CustomLink: UIViewRepresentable {
             NSAttributedString(
                 string: title ?? "",
                 attributes: [
-                    .foregroundColor: UIColor.blue,
+                    .foregroundColor: UIColor.systemBlue,
                     .underlineStyle: NSUnderlineStyle.single.rawValue
                 ]
             ),

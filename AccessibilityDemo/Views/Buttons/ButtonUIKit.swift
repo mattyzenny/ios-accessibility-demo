@@ -20,11 +20,11 @@ struct ButtonUIKit: View {
     }
     
     
-    // This works in SwiftUI, but UIKit does not announce group accessibility labels the same way.
+    // NOTE: This works in SwiftUI, but UIKit does not announce group accessibility labels the same way.
     //            ExampleCard(
     //                icon: .voiceOver,
     //                label: "Grouped Buttons",
-    //                subLabel: "Use `UIStackedView` and assign `isAccessibilityElement` + `accessibilityLabel` to give the group a unified voiceover label",
+    //                subLabel: "Use `UIStackView` and assign `isAccessibilityElement` + `accessibilityLabel` to give the group a unified VoiceOver label",
     //                examples: {
     //                        StackedButtons(titles:
     //                                        ["Florida", "California", "Paris"]
@@ -148,7 +148,7 @@ struct ButtonUIKit: View {
                 ExampleCard(
                     icon: .voiceOver,
                     label: "Buttons With an Accessible Hint",
-                    subLabel: "Use `accessibilityHint` to provide supplimental hints about the buttons purpose",
+                    subLabel: "Use `accessibilityHint` to provide supplemental hints about the button's purpose",
                     examples: {
                         UIKitButton(
                             setTitle: "Learn More",

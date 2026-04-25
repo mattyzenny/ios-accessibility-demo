@@ -56,7 +56,7 @@ struct ButtonSwiftUI: View {
             ExampleCard(
                 icon: .voiceOver,
                 label: "Buttons with an Accessible Hint",
-                subLabel: "Use `accessibilityHint` to provide supplimental hints about the buttons purpose",
+                subLabel: "Use `accessibilityHint` to provide supplemental hints about the button's purpose",
                 examples: {
                     Button("Learn More"){
                         number = Int.random(in: 1...100)

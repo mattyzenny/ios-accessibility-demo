@@ -24,4 +24,6 @@ extension Image {
     static let slider = Image(systemName: "slider.horizontal.3")
     
     static let switcher = Image(systemName: "switch.2")
+    
+    static let map = Image(systemName: "map")
 }

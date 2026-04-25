@@ -76,6 +76,17 @@ struct HomeView: View {
                 .groupBoxStyle(CardStyle())
                 .listRowSeparator(.hidden)
             }
+            Section("Web to Mobile"){
+                GroupBox {
+                    ComponentCard(
+                        icon: .map,
+                        label: "Accessible Trait Mapping",
+                        destination: ConversionView()
+                    )
+                }
+                .groupBoxStyle(CardStyle())
+                .listRowSeparator(.hidden)
+            }
         }
         .groupBoxStyle(CardStyle())
     }
