@@ -50,7 +50,7 @@ struct SwitchFlowView: View {
             """))
 
             Text(.init("""
-            **Role:** Expose the control as a button when it behaves like one.
+            **Role:** The role is automatically applied when using native elements.
             """))
 
             Text(.init("""
@@ -67,15 +67,15 @@ struct SwitchFlowView: View {
     private var swiftUIGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Native `Button()` usually uses its label. Add `.accessibilityLabel(...)` only when needed.
+            **Name:** Native `Toggle()` usually uses its label. Add `.accessibilityLabel(...)` only when needed.
             """))
 
             Text(.init("""
-            **Role:** Native `Button()` already has button semantics. For a custom tappable view, prefer a real `Button`; otherwise add `.accessibilityAddTraits(.isButton)`.
+            **Role:** Native `Toggle()` already has switch semantics. For a custom toggle-like view, prefer a real `Toggle`; otherwise add the appropriate accessibility traits.
             """))
 
             Text(.init("""
-            **State:** Use real state like `.disabled(true)`. If a fully custom control still does not expose state clearly, add extra accessibility state information as needed.
+            **State:** Use real binding state like `isOn` and let the system announce on/off. Only override the announcement when you need custom wording.
             """))
         } header: {
             Text("SwiftUI Guidance")
@@ -88,15 +88,15 @@ struct SwitchFlowView: View {
     private var uiKitGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** `UIButton` usually uses its title. Add `accessibilityLabel` only when needed.
+            **Name:** `UISwitch` requires an explicit label. Add `accessibilityLabel` that matches the visible label.
             """))
 
             Text(.init("""
-            **Role:** `UIButton` already has button semantics. Custom interactive views need explicit accessibility configuration.
+            **Role:** `UISwitch` already has switch semantics. Custom interactive views need explicit accessibility configuration.
             """))
 
             Text(.init("""
-            **State:** Use real control state such as `isEnabled = false` so assistive technologies can announce it correctly.
+            **State:** Use real control state such as `isOn = false` so assistive technologies can announce it correctly.
             """))
         } header: {
             Text("UIKit Guidance")

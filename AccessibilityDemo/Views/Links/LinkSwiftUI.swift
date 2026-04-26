@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LinkSwiftUI: View {
     var body: some View {
-        LinkIntro()
-        TextLinks()
-        ImageLinks()
-        IconTextLinks()
+            LinkIntro()
+            TextLinks()
+            ImageLinks()
+            IconTextLinks()
     }
 }
 
@@ -50,7 +50,9 @@ private struct TextLinks: View {
                                     "https://developer.apple.com/documentation/swiftui/accessibilitytraits"
                             )!
                         )
+                        .buttonStyle(.plain)
                         .accessibilityRemoveTraits(.isButton)
+                        .foregroundStyle(.blue)
                         .padding()
                         Link(
                             "Default Link, example",
@@ -59,6 +61,8 @@ private struct TextLinks: View {
                                     "https://developer.apple.com/documentation/swiftui/accessibilitytraits"
                             )!
                         )
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.blue)
                     }
                 },
                 sections: { icon in
@@ -102,6 +106,9 @@ private struct ImageLinks: View {
                         Image(systemName: "square.and.arrow.up")
                     }
                     .accessibilityLabel("Share UI Guidelines")
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.blue)
+
 
                 },
                 sections: { icon in
@@ -154,6 +161,9 @@ private struct IconTextLinks: View {
                         )
                     }
                     .accessibilityRemoveTraits(.isButton)
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.blue)
+
                 },
                 sections: { icon in
                     CardSections(sectionHeading: "VoiceOver Output") {

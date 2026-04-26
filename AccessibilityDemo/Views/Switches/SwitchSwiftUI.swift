@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SwitchSwiftUI: View {
+    @State var isOn: Bool = false
+    
     var body: some View {
         VStack {
             Text("Swift UI")
@@ -23,67 +25,33 @@ struct SwitchSwiftUI: View {
         VStack {
             ExampleCard(
                 icon: .voiceOver,
-                label: "Buttons with Accessible Text",
-                subLabel: "Add `accessibilityLabel` for additional button label information",
+                label: "Toggle labels",
+                subLabel:
+                    "Toggle has a label by default. You can overwrite this label using `accessibilityLabel`.",
                 examples: {
-                    Button("Learn More") {}
-                        .buttonModifier()
-                        .accessibilityLabel("Learn more about labels")
+                    Toggle(isOn: $isOn) {
+                        Label("Map View", systemImage: "mappin.and.ellipse")
+                            .accessibilityLabel("Enable Map View")
+                    }
                 },
                 sections: { icon in
                     CardSections(sectionHeading: "VoiceOver Output") {
                         VoiceOverRow(
                             icon: icon,
-                            subText: "'Learn more about labels, Button'"
+                            subText:
+                                "'Enable Map View, Switch button Off, Double tap to toggle setting.'"
                         )
                     }
 
                     Divider()
 
                     CardSections(sectionHeading: "Code") {
-                        Text("""
-                        Button("Learn More") {}
-                            .accessibilityLabel("Learn more about labels")
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
-            )
-        }
-
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Image Only Buttons",
-                subLabel: "Requires `accessibilityLabel`",
-                examples: {
-                    Button {
-                    } label: {
-                        Image.download
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 25)
-                    }
-                    .accessibilityLabel("download")
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "'Download, Button'"
+                        Text(
+                            """
+                            Toggle("Map View", isOn: $isOn)
+                            .accessibilityLabel("Enable Map View")
+                            """
                         )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        Button {
-                        } label: {
-                            Image.download
-                        }
-                        .accessibilityLabel("Download")
-                        """)
                         .codeBlockModifier()
                     }
                 }
@@ -92,111 +60,31 @@ struct SwitchSwiftUI: View {
         VStack {
             ExampleCard(
                 icon: .voiceOver,
-                label: "Disabled Buttons",
-                subLabel: "Add `disabled` to change the button state",
+                label: "Adjust value announcement",
+                subLabel:
+                    "Toggles usually announce their state automatically. Customizing the value is possible, but it may be redundant.",
                 examples: {
-                    Button("Learn More") {}
-                        .disabled(true)
-                        .buttonModifier()
+                    Toggle("Enable Map View", isOn: $isOn)
+                        .accessibilityValue(isOn ? "View Map On" : "View Map Off")
                 },
                 sections: { icon in
                     CardSections(sectionHeading: "VoiceOver Output") {
                         VoiceOverRow(
                             icon: icon,
-                            subText: "'Learn More, dimmed, Button'"
+                            subText:
+                                "'Enable Map View, Switch button Off, Double tap to toggle setting.'"
                         )
                     }
 
                     Divider()
 
                     CardSections(sectionHeading: "Code") {
-                        Text("""
-                        VStack {
-                            Text("Learn More")
-                        }
-                        .accessibilityAddTraits(.isButton)
-                        .buttonModifier()
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
-            )
-        }
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Grouped Buttons",
-                subLabel: "Use `GroupBox` to group buttons and assign `accessibilityElement` + `accessibilityLabel` to the group container",
-                examples: {
-                    GroupBox {
-                        HStack {
-                            Button("Florida") {}
-                            Button("California") {}
-                            Button("Paris") {}
-                        }
-                        .buttonModifier()
-                    }
-                    .accessibilityElement(children: .contain)
-                    .accessibilityLabel("Choose a Park")
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "Choose a Park"
+                        Text(
+                            """
+                            Toggle("Enable Map View", isOn: $isOn)
+                            .accessibilityValue(isOn ? "View Map On" : "View Map Off")
+                            """
                         )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        GroupBox {
-                            HStack {
-                                Button("Florida") {}
-                                Button("California") {}
-                                Button("Paris") {}
-                            }
-                            .buttonModifier()
-                        }
-                        .accessibilityElement(children: .contain)
-                        .accessibilityLabel("Choose a Park")
-                        """)
-                        .codeBlockModifier()
-                    }
-                }
-            )
-        }
-        VStack {
-            ExampleCard(
-                icon: .voiceOver,
-                label: "Custom Buttons",
-                subLabel: "Requires `accessibilityAddTraits`. All styling and button functionality must be handled independently.",
-                examples: {
-                    VStack {
-                        Text("Learn More")
-
-                    }
-                    .accessibilityAddTraits(.isButton)
-
-                },
-                sections: { icon in
-                    CardSections(sectionHeading: "VoiceOver Output") {
-                        VoiceOverRow(
-                            icon: icon,
-                            subText: "'Learn More, Button'"
-                        )
-                    }
-
-                    Divider()
-
-                    CardSections(sectionHeading: "Code") {
-                        Text("""
-                        VStack {
-                            Text("Learn More")
-                            }
-                        .accessibilityAddTraits(.isButton)
-                        """)
                         .codeBlockModifier()
                     }
                 }
