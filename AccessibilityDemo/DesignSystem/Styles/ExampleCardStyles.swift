@@ -94,6 +94,7 @@ extension Text {
             .foregroundColor(.secondary)
             .font(.callout.bold())
             .frame(maxWidth: .infinity)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 

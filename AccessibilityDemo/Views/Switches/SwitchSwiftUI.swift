@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SwitchSwiftUI: View {
     @State var isOn: Bool = false
-    
+
     var body: some View {
         VStack {
             Text("Swift UI")
@@ -19,8 +19,10 @@ struct SwitchSwiftUI: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity)
 
-            Text("Swift UI uses native accessibility that is built into the framework")
-                .padding()
+            Text(
+                "Swift UI uses native accessibility that is built into the framework"
+            )
+            .padding()
         }
         VStack {
             ExampleCard(
@@ -65,7 +67,9 @@ struct SwitchSwiftUI: View {
                     "Toggles usually announce their state automatically. Customizing the value is possible, but it may be redundant.",
                 examples: {
                     Toggle("Enable Map View", isOn: $isOn)
-                        .accessibilityValue(isOn ? "View Map On" : "View Map Off")
+                        .accessibilityValue(
+                            isOn ? "View Map On" : "View Map Off"
+                        )
                 },
                 sections: { icon in
                     CardSections(sectionHeading: "VoiceOver Output") {
