@@ -1,13 +1,13 @@
 //
-//  SwitchFlowView.swift
+//  ImageFlowView.swift
 //  AccessibilityDemo
 //
-//  Created by Matty Zenny on 4/9/26.
+//  Created by OpenAI on 2026-05-04.
 //
 
 import SwiftUI
 
-struct SwitchFlowView: View {
+struct ImageFlowView: View {
     @Environment(GlobalFrameworkSettings.self) private var settings
 
     var body: some View {
@@ -20,35 +20,34 @@ struct SwitchFlowView: View {
                 switch setting.framework {
                 case .swiftUI:
                     swiftUIGuidanceSection
-                    SwitchSwiftUI()
+                    ImageSwiftUI()
 
                 case .uiKit:
                     uiKitGuidanceSection
-                    SwitchUIKit()
+                    ImageUIKit()
 
                 case .both:
                     genericGuidanceSection
-                    SwitchSwiftUI()
-                    SwitchUIKit()
+                    ImageSwiftUI()
+                    ImageUIKit()
                 }
             }
-
         }
-        .navigationTitle("Accessible Switches")
+        .navigationTitle("Accessible Images")
     }
 
     private var genericGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Use a concise spoken label that matches the action.
+            **Purpose:** Decide whether the image is decorative, informative, or functional before adding accessibility metadata.
             """))
 
             Text(.init("""
-            **Role:** The role is automatically applied when using native elements.
+            **Name:** Informative and functional images need a concise spoken label that matches what the image communicates.
             """))
 
             Text(.init("""
-            **State:** Expose meaningful states like disabled, selected, or expanded.
+            **Noise:** Hide decorative images from assistive technologies so they do not create extra stops.
             """))
         } header: {
             Text("Generic Guidelines")
@@ -61,15 +60,15 @@ struct SwitchFlowView: View {
     private var swiftUIGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Native `Toggle()` usually uses its label. Add `.accessibilityLabel(...)` only when needed.
+            **Decorative:** Use `.accessibilityHidden(true)` when the image adds visual polish but no meaning.
             """))
 
             Text(.init("""
-            **Role:** Native `Toggle()` already has switch semantics. For a custom toggle-like view, prefer a real `Toggle`; otherwise add the appropriate accessibility traits.
+            **Informative:** Add `.accessibilityLabel(...)` when the image communicates content that is not already announced nearby.
             """))
 
             Text(.init("""
-            **State:** Use real binding state like `isOn` and let the system announce on/off. Only override the announcement when you need custom wording.
+            **Functional:** If the image is tappable, prefer a real `Button` or `Label` so role and action are exposed automatically.
             """))
         } header: {
             Text("SwiftUI Guidance")
@@ -82,15 +81,15 @@ struct SwitchFlowView: View {
     private var uiKitGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** `UISwitch` requires an explicit label. Add `accessibilityLabel` that matches the visible label.
+            **Decorative:** Set `isAccessibilityElement = false` for images that do not convey meaning.
             """))
 
             Text(.init("""
-            **Role:** `UISwitch` already has switch semantics. Custom interactive views need explicit accessibility configuration.
+            **Informative:** Set `isAccessibilityElement = true` and provide an `accessibilityLabel` for meaningful images.
             """))
 
             Text(.init("""
-            **State:** Use real control state such as `isOn = false` so assistive technologies can announce it correctly.
+            **Functional:** If the image behaves like a control, use a native control or configure the view's traits and action clearly.
             """))
         } header: {
             Text("UIKit Guidance")
@@ -103,7 +102,7 @@ struct SwitchFlowView: View {
 
 #Preview {
     NavigationStack {
-        SwitchFlowView()
+        ImageFlowView()
     }
     .environment(GlobalFrameworkSettings())
 }

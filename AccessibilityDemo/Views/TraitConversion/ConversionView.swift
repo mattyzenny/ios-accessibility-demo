@@ -111,14 +111,12 @@ struct ConversionView: View {
                 ForEach(group) { row in
                     VStack(alignment: .leading, spacing: 12) {
 
-                        // Title (Trait)
                         Text(row.trait)
                             .font(.title2)
                             .fontWeight(.bold)
 
                         Divider()
 
-                        // Web
                         HStack {
                             Text("Web")
                                 .font(.subheadline)
@@ -129,7 +127,6 @@ struct ConversionView: View {
                                 .fontDesign(.monospaced)
                         }
 
-                        // Mobile
                         HStack {
                             Text("Mobile")
                                 .font(.subheadline)
@@ -140,7 +137,6 @@ struct ConversionView: View {
                                 .fontDesign(.monospaced)
                         }
 
-                        // Description
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Description")
                                 .font(.subheadline)

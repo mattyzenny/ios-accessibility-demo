@@ -20,7 +20,7 @@ struct ComponentCard<Destination: View>: View {
             } label: {
                 HStack {
                     icon
-                        .cardIconStyle()
+                        .cardIconModifiers()
                     
                     Spacer()
                     

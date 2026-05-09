@@ -34,13 +34,7 @@ struct HeadingFlowView: View {
                     }
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .title) {
-                Text("Accessible Headings")
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityHeading(.h1)
-            }
-        }
+        .navigationTitle("Accessible Headings")
     }
 }
 

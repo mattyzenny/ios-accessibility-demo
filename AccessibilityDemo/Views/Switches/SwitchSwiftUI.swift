@@ -20,12 +20,12 @@ struct SwitchSwiftUI: View {
                 .frame(maxWidth: .infinity)
 
             Text(
-                "Swift UI uses native accessibility that is built into the framework"
+                "Swift UI's Toggle takes a label and a value of isOn to create a switch."
             )
             .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Toggle labels",
                 subLabel:
@@ -60,7 +60,7 @@ struct SwitchSwiftUI: View {
             )
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Adjust value announcement",
                 subLabel:

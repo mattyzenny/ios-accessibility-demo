@@ -21,7 +21,7 @@ struct HeadingUIKit: View {
                 .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Generic Header",
                 subLabel:

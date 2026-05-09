@@ -34,13 +34,7 @@ struct SliderFlowView: View {
             }
 
         }
-        .toolbar {
-            ToolbarItem(placement: .title) {
-                Text("Accessible Sliders")
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityHeading(.h1)
-            }
-        }
+        .navigationTitle("Accessible Sliders")
     }
 
     private var genericGuidanceSection: some View {

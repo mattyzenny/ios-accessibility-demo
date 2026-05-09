@@ -1,13 +1,13 @@
 //
-//  SwitchFlowView.swift
+//  CardContainerFlowView.swift
 //  AccessibilityDemo
 //
-//  Created by Matty Zenny on 4/9/26.
+//  Created by OpenAI on 2026-05-04.
 //
 
 import SwiftUI
 
-struct SwitchFlowView: View {
+struct CardContainerFlowView: View {
     @Environment(GlobalFrameworkSettings.self) private var settings
 
     var body: some View {
@@ -20,35 +20,34 @@ struct SwitchFlowView: View {
                 switch setting.framework {
                 case .swiftUI:
                     swiftUIGuidanceSection
-                    SwitchSwiftUI()
+                    CardSwiftUI()
 
                 case .uiKit:
                     uiKitGuidanceSection
-                    SwitchUIKit()
+                    CardUIKit()
 
                 case .both:
                     genericGuidanceSection
-                    SwitchSwiftUI()
-                    SwitchUIKit()
+                    CardSwiftUI()
+                    CardUIKit()
                 }
             }
-
         }
-        .navigationTitle("Accessible Switches")
+        .navigationTitle("Accessible Cards")
     }
 
     private var genericGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Use a concise spoken label that matches the action.
+            **Grouping:** Decide whether the card should be announced as one summary or as separate elements based on what helps the user most.
             """))
 
             Text(.init("""
-            **Role:** The role is automatically applied when using native elements.
+            **Order:** Make sure reading order follows the visual hierarchy and the most important information comes first.
             """))
 
             Text(.init("""
-            **State:** Expose meaningful states like disabled, selected, or expanded.
+            **Interactivity:** If the entire card is tappable, expose a single clear action instead of many competing accessibility stops.
             """))
         } header: {
             Text("Generic Guidelines")
@@ -61,15 +60,15 @@ struct SwitchFlowView: View {
     private var swiftUIGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** Native `Toggle()` usually uses its label. Add `.accessibilityLabel(...)` only when needed.
+            **Grouping:** Use `.accessibilityElement(children: .combine)` when the card should read as one component.
             """))
 
             Text(.init("""
-            **Role:** Native `Toggle()` already has switch semantics. For a custom toggle-like view, prefer a real `Toggle`; otherwise add the appropriate accessibility traits.
+            **Labels:** Add a custom `.accessibilityLabel(...)` only when combining children does not produce a good announcement.
             """))
 
             Text(.init("""
-            **State:** Use real binding state like `isOn` and let the system announce on/off. Only override the announcement when you need custom wording.
+            **Actions:** Prefer wrapping tappable cards in `Button` or `NavigationLink` so role and activation behavior stay native.
             """))
         } header: {
             Text("SwiftUI Guidance")
@@ -82,15 +81,15 @@ struct SwitchFlowView: View {
     private var uiKitGuidanceSection: some View {
         Section {
             Text(.init("""
-            **Name:** `UISwitch` requires an explicit label. Add `accessibilityLabel` that matches the visible label.
+            **Grouping:** Use container views like `UIStackView` to organize content, then decide whether the container or its children should be accessible.
             """))
 
             Text(.init("""
-            **Role:** `UISwitch` already has switch semantics. Custom interactive views need explicit accessibility configuration.
+            **Labels:** For a single announced card, set `isAccessibilityElement = true` on the container and provide a combined `accessibilityLabel`.
             """))
 
             Text(.init("""
-            **State:** Use real control state such as `isOn = false` so assistive technologies can announce it correctly.
+            **Actions:** If the card is interactive, use a control or add the correct traits and activation handling explicitly.
             """))
         } header: {
             Text("UIKit Guidance")
@@ -103,7 +102,7 @@ struct SwitchFlowView: View {
 
 #Preview {
     NavigationStack {
-        SwitchFlowView()
+        CardContainerFlowView()
     }
     .environment(GlobalFrameworkSettings())
 }

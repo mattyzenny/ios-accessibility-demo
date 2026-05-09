@@ -28,7 +28,7 @@ struct SliderUIKit: View {
                 .padding()
             }
             VStack {
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Add a visible label to Steppers and Sliders",
                     subLabel:
@@ -96,7 +96,7 @@ struct SliderUIKit: View {
                 )
             }
             VStack {
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Sliders with descriptive value",
                     subLabel:

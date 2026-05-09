@@ -35,13 +35,8 @@ struct LinkFlowView: View {
             }
             
         }
-        .toolbar {
-            ToolbarItem(placement: .title) {
-                Text("Accessible Links")
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityHeading(.h1)
-            }
-        }
+        .navigationTitle("Accessible Links")
+
     }
     
     

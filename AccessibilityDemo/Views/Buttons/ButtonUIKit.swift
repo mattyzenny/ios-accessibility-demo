@@ -21,7 +21,7 @@ struct ButtonUIKit: View {
     
     
     // NOTE: This works in SwiftUI, but UIKit does not announce group accessibility labels the same way.
-    //            ExampleCard(
+    //            DemoCard(
     //                icon: .voiceOver,
     //                label: "Grouped Buttons",
     //                subLabel: "Use `UIStackView` and assign `isAccessibilityElement` + `accessibilityLabel` to give the group a unified VoiceOver label",
@@ -104,7 +104,7 @@ struct ButtonUIKit: View {
     private struct AccessibleText: View {
         var body: some View {
             VStack{
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Buttons with Accessible Text",
                     subLabel: "Add `accessibilityLabel` for additional button label information",
@@ -145,7 +145,7 @@ struct ButtonUIKit: View {
         
         var body: some View {
             VStack{
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Buttons With an Accessible Hint",
                     subLabel: "Use `accessibilityHint` to provide supplemental hints about the button's purpose",
@@ -190,7 +190,7 @@ struct ButtonUIKit: View {
     private struct AccessibilityIconButton: View {
         var body: some View {
             VStack{
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Icon only Buttons",
                     subLabel: "Requires `accessibilityLabel`",
@@ -231,7 +231,7 @@ struct ButtonUIKit: View {
     private struct AccessibilityDisabledButton: View {
         var body: some View {
             VStack{
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Disabled Buttons",
                     subLabel: "Set `isEnabled` to false to disable buttons",
@@ -272,7 +272,7 @@ struct ButtonUIKit: View {
     private struct AccessibilityCustomButton: View {
         var body: some View {
             VStack{
-                ExampleCard(
+                DemoCard(
                     icon: .voiceOver,
                     label: "Custom buttons",
                     subLabel: "Requires `isAccessibilityElement`, `accessibilityTraits`. All styling and button functionality must be coded.",

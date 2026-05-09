@@ -10,17 +10,22 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         ZStack {
-            
+
             intro
-            
+
         }
+        .navigationTitle("Components")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(removing: .title)
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
+
+
     var intro: some View {
         List {
-            Section("Components"){
-                
+            Section("Components") {
+
                 GroupBox {
                     ComponentCard(
                         icon: .button,
@@ -29,54 +34,82 @@ struct HomeView: View {
                         accessibilityLabel: "Buttons examples"
                     )
                 }
-                .groupBoxStyle(CardStyle())
+                .groupBoxStyle(SectionCardStyle())
                 .listRowSeparator(.hidden)
-                
+
                 GroupBox {
                     ComponentCard(
                         icon: .heading,
                         label: "Headings",
                         destination: HeadingFlowView(),
-                         accessibilityLabel: "Headings examples")
-                    
+                        accessibilityLabel: "Headings examples"
+                    )
+
                 }
-                .groupBoxStyle(CardStyle())
+                .groupBoxStyle(SectionCardStyle())
                 .listRowSeparator(.hidden)
-                
+
                 GroupBox {
                     ComponentCard(
                         icon: .link,
                         label: "Links",
                         destination: LinkFlowView(),
-                        accessibilityLabel: "Link examples")
-                    
+                        accessibilityLabel: "Link examples"
+                    )
+
                 }
-                .groupBoxStyle(CardStyle())
+                .groupBoxStyle(SectionCardStyle())
                 .listRowSeparator(.hidden)
-                
+
                 GroupBox {
                     ComponentCard(
                         icon: .slider,
                         label: "Sliders & Steppers",
                         destination: SliderFlowView(),
-                        accessibilityLabel: "Slider & Switch examples")
-                    
+                        accessibilityLabel: "Slider & Switch examples"
+                    )
+
                 }
-                .groupBoxStyle(CardStyle())
+                .groupBoxStyle(SectionCardStyle())
                 .listRowSeparator(.hidden)
-                
+
                 GroupBox {
                     ComponentCard(
                         icon: .switcher,
                         label: "Switches",
                         destination: SwitchFlowView(),
-                        accessibilityLabel: "Switch examples")
-                    
+                        accessibilityLabel: "Switch examples"
+                    )
+
                 }
-                .groupBoxStyle(CardStyle())
+                .groupBoxStyle(SectionCardStyle())
+                .listRowSeparator(.hidden)
+
+                GroupBox {
+                    ComponentCard(
+                        icon: .images,
+                        label: "Images",
+                        destination: ImageFlowView(),
+                        accessibilityLabel: "Image examples"
+                    )
+
+                }
+                .groupBoxStyle(SectionCardStyle())
+                .listRowSeparator(.hidden)
+
+                GroupBox {
+                    ComponentCard(
+                        icon: .containers,
+                        label: "Cards & Custom Containers",
+                        destination: CardContainerFlowView(),
+                        accessibilityLabel: "Cards & Custom Containers examples"
+                    )
+
+                }
+                .groupBoxStyle(SectionCardStyle())
                 .listRowSeparator(.hidden)
             }
-            Section("Web to Mobile"){
+            Section("Web to Mobile") {
                 GroupBox {
                     ComponentCard(
                         icon: .map,
@@ -84,12 +117,13 @@ struct HomeView: View {
                         destination: ConversionView()
                     )
                 }
-                .groupBoxStyle(CardStyle())
+                .groupBoxStyle(SectionCardStyle())
                 .listRowSeparator(.hidden)
             }
         }
-        .groupBoxStyle(CardStyle())
+        .groupBoxStyle(SectionCardStyle())
     }
+    
 }
 
 
@@ -99,4 +133,3 @@ struct HomeView: View {
     }
     .environment(GlobalFrameworkSettings())
 }
-

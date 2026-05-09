@@ -20,12 +20,12 @@ struct SwitchUIKit: View {
                 .frame(maxWidth: .infinity)
 
             Text(
-                "UIKit uses native accessibility that is built into the framework"
+                "UIKit requires a visible UILabel, and an accessible label to describe the UI element, "
             )
             .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Add a visible label to UISwitch",
                 subLabel:

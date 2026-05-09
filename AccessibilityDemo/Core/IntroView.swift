@@ -21,7 +21,10 @@ struct IntroView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)
         .padding(.bottom)
+        .navigationTitle("Home")
+        .toolbarVisibility(.hidden)
     }
+    
 
     var header: some View {
         VStack(spacing: 20) {

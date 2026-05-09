@@ -36,7 +36,7 @@ private struct LinkIntro: View {
 private struct TextLinks: View {
     var body: some View {
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Text Links",
                 subLabel:
@@ -92,7 +92,7 @@ private struct TextLinks: View {
 private struct ImageLinks: View {
     var body: some View {
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Image Only Links",
                 subLabel: "Requires `accessibilityLabel`",
@@ -142,7 +142,7 @@ private struct ImageLinks: View {
 private struct IconTextLinks: View {
     var body: some View {
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Icon + Text Links",
                 subLabel:

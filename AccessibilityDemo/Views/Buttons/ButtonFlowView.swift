@@ -28,6 +28,7 @@ struct ButtonFlowView: View {
                     ButtonUIKit()
                     
                 case .both:
+                    NavigationLink("hi", destination: ConversionView())
                     genericGuidanceSection
                     ButtonSwiftUI()
                     ButtonUIKit()
@@ -35,14 +36,11 @@ struct ButtonFlowView: View {
             }
             
         }
-        .toolbar {
-            ToolbarItem(placement: .title) {
-                Text("Accessible Buttons")
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityHeading(.h1)
-            }
-        }
+        .navigationTitle("Accessible Buttons")
+
+
     }
+    
     
     
     private var genericGuidanceSection: some View {

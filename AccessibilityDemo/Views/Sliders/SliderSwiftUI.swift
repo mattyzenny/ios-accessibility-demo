@@ -31,7 +31,7 @@ struct SliderSwiftUI: View {
             .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Steppers and Sliders with visible labels",
                 subLabel:
@@ -106,7 +106,7 @@ struct SliderSwiftUI: View {
             )
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Sliders with accessible label",
                 subLabel:
@@ -178,7 +178,7 @@ struct SliderSwiftUI: View {
             )
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Steppers and Sliders with accessible values and hints",
                 subLabel:

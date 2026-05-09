@@ -1,5 +1,5 @@
 //
-//  ExampleCard.swift
+//  DemoCard.swift
 //  AccessibilityDemo
 //
 //  Created by Matty Zenny on 3/30/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExampleCard<Examples: View, Sections: View>: View {
+struct DemoCard<Examples: View, Sections: View>: View {
     
     
     let icon: Image
@@ -42,11 +42,9 @@ struct ExampleCard<Examples: View, Sections: View>: View {
                     .font(.caption)
                     .foregroundStyle(Color.primary)
                 
-                
-                
             }
         }
-        .exampleCardStyle()
+        .demoCardModifiers()
         
     }
 }
@@ -74,11 +72,13 @@ struct VoiceOverRow: View {
     let subText: String
     
     var body: some View {
-        HStack{
+        HStack(alignment: .top, spacing: 8) {
             icon
                 .iconModifier()
             Text(subText)
                 .voiceOverTextModifier()
+                .fixedSize(horizontal: false, vertical: true)
+                .layoutPriority(1)
         }
         
     }

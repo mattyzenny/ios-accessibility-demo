@@ -26,4 +26,8 @@ extension Image {
     static let switcher = Image(systemName: "switch.2")
     
     static let map = Image(systemName: "map")
+    
+    static let images = Image(systemName: "photo.on.rectangle.angled")
+
+    static let containers = Image(systemName: "widget.small.badge.plus")
 }

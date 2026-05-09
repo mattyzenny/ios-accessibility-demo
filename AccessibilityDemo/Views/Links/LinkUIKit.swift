@@ -23,7 +23,7 @@ struct LinkUIKit: View {
             .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Text Link",
                 subLabel:
@@ -62,7 +62,7 @@ struct LinkUIKit: View {
             )
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Image Only Links",
                 subLabel:
@@ -103,7 +103,7 @@ struct LinkUIKit: View {
             )
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Image + Text Links",
                 subLabel:

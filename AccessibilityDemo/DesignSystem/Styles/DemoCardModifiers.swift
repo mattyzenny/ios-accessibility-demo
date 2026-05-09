@@ -1,5 +1,5 @@
 //
-//  ExampleCardStyles.swift
+//  DemoCardModifiers.swift
 //  AccessibilityDemo
 //
 //  Created by Matty Zenny on 3/30/26.
@@ -10,15 +10,17 @@ import SwiftUI
 
 
 
-struct ExampleCardStyle: ViewModifier {
+struct DemoCardModifiers: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 12)
                     .fill(Color(.secondarySystemBackground))
-                    .overlay(RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color(.separator), lineWidth: 1))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color(.separator), lineWidth: 1)
+                    )
             )
     }
 }
@@ -62,8 +64,8 @@ private struct CodeBlockModifier: ViewModifier {
 
 
 extension View {
-    func exampleCardStyle() -> some View {
-        modifier(ExampleCardStyle())
+    func demoCardModifiers() -> some View {
+        modifier(DemoCardModifiers())
     }
     
     func buttonModifier() -> some View {
@@ -74,13 +76,11 @@ extension View {
         modifier(UIButtonModifier())
     }
     
-    func codeBlockModifier() -> some
-    View {
+    func codeBlockModifier() -> some View {
         modifier(CodeBlockModifier())
     }
-    
-    
 }
+
 extension Text {
     func exampleTextModifier() -> some View {
         self
@@ -106,6 +106,5 @@ extension Image {
             .accessibilityHidden(true)
     }
 }
-
 
 

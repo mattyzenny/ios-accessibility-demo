@@ -22,7 +22,7 @@ struct HeadingSwiftUI: View {
             .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Generic Header",
                 subLabel: "Use `accessibilityAddTraits` to assigning header roles.",
@@ -52,7 +52,7 @@ struct HeadingSwiftUI: View {
             )
         }
         VStack{
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Assign heading level",
                 subLabel: "Add `accessibilityAddTraits` + `accessibilityHeading` in order to overwrite the default generic isHeader trait.",

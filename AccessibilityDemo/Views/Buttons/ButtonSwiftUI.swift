@@ -23,7 +23,7 @@ struct ButtonSwiftUI: View {
                 .padding()
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Buttons with Accessible Text",
                 subLabel: "Add `accessibilityLabel` for additional button label information",
@@ -53,7 +53,7 @@ struct ButtonSwiftUI: View {
             )
         }
         VStack {
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Buttons with an Accessible Hint",
                 subLabel: "Use `accessibilityHint` to provide supplemental hints about the button's purpose",
@@ -87,7 +87,7 @@ struct ButtonSwiftUI: View {
             )
         }
         VStack{
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Image Only Buttons",
                 subLabel: "Requires `accessibilityLabel`",
@@ -125,7 +125,7 @@ struct ButtonSwiftUI: View {
             )
         }
         VStack{
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Disabled Buttons",
                 subLabel: "Add `disabled` to change the button state",
@@ -158,7 +158,7 @@ struct ButtonSwiftUI: View {
             )
         }
         VStack{
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Grouped Buttons",
                 subLabel: "Use `GroupBox` to group buttons and assign `accessibilityElement` + `accessibilityLabel` to the group container",
@@ -203,7 +203,7 @@ struct ButtonSwiftUI: View {
             )
         }
         VStack{
-            ExampleCard(
+            DemoCard(
                 icon: .voiceOver,
                 label: "Custom Buttons",
                 subLabel: "Requires `accessibilityAddTraits`. All styling and button functionality must be handled independently.",
